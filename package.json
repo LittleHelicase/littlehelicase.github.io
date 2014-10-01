@@ -1,0 +1,29 @@
+{
+  "name": "littlehelicase.github.io",
+  "version": "0.0.0",
+  "description": "Little Helicase Blog",
+  "main": "index.js",
+  "dependencies": {
+    "metalsmith": "~0.11.0",
+    "metalsmith-markdown": "~0.2.1",
+    "metalsmith-collections": "~0.6.0",
+    "metalsmith-permalinks": "~0.4.0",
+    "metalsmith-excerpts": "~1.0.0"
+  },
+  "devDependencies": {
+    "metalsmith-templates": "~0.5.2",
+    "handlebars": "~2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/LittleHelicase/littlehelicase.github.io.git"
+  },
+  "keywords": [
+    "Blog"
+  ],
+  "author": "Maximilian Klein",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LittleHelicase/littlehelicase.github.io/issues"
+  }
+}
