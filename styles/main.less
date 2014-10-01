@@ -1,0 +1,88 @@
+@base-color: #b92245;
+@base-gray: #ddd;
+@highlight: #69A7D3;
+@link: #FB2379;
+@title: #fff;
+
+body {
+  margin:0px;
+  background-color: @base-gray;
+  font-family: 'Roboto', sans-serif;
+  line-height:1.2;
+  font-size: 14pt;
+  font-weight: 100;
+}
+
+.cheat {
+  position:absolute;
+  left:0;top:0;right:0;
+  margin-top:0px;
+  height: 70px;
+  //background: linear-gradient(@base-color 90%,@base-gray 100%);
+  background-color: @base-color;
+  z-index:2;
+  //border-bottom: 1px solid #555;
+  box-shadow: 0px 0px 6px #333;
+}
+
+.title {
+  margin-left: 10%;
+  padding-top: 10px;
+  font-weight: 900;
+  font-size:150%;
+  color: @title;
+  a {
+    color: @title;
+  }
+}
+
+.about {
+  margin-left: 200px;
+  font-size:110%;
+  color: #eee;
+  a {
+    color: @title;
+  }
+}
+
+.content {
+  margin-top: 140px;
+  margin-left: 15%;
+  width: 650px;
+  background-color: white;
+  padding:20px 120px 40px 60px;
+  //border-radius: 5px;
+  box-shadow: 0px 0px 6px #333;
+  
+  h2 {
+    margin-top: 50px;
+  }
+}
+
+h1,h2 {
+  color: @highlight;
+}
+
+h2 { 
+  font-size: 160%;
+}
+
+a {
+  color: @link;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.images {
+  margin-bottom: 20px;
+}
+
+em {
+  font-weight: 300;
+}
+
+strong {
+  font-weight: 400;
+}
