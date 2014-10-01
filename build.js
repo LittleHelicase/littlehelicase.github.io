@@ -9,6 +9,7 @@ var Handlebars = require('handlebars');
 var fs         = require('fs');
 var watch = require('metalsmith-watch');
 var excerpt = require("metalsmith-excerpts");
+var moment = require("moment");
 
 
 Handlebars.registerPartial('header', fs.readFileSync(__dirname + '/templates/partials/header.hbt').toString());
@@ -16,6 +17,16 @@ Handlebars.registerPartial('footer', fs.readFileSync(__dirname + '/templates/par
 
 Handlebars.registerHelper('link', function(path) {
     return '../../' + path + "/index.html";
+});
+
+Handlebars.registerHelper("formatDate", function(datetime) {
+  if (moment) {
+    f = "DD MMMM - YYYY";
+    return moment(datetime).format(f);
+  }
+  else {
+    return datetime;
+  }
 });
 
 Metalsmith(__dirname)

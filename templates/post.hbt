@@ -1,7 +1,9 @@
 {{> header}}
 
 <div class="content">
-  <h2>{{title}}</h2>
+  <h2>{{title}}
+  <small>{{formatDate date}}</small>
+  </h2>
 
   <article>
       {{{contents}}}

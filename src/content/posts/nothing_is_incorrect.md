@@ -2,7 +2,7 @@
 title: Nothing is incorrect!
 collection: posts
 template: post.hbt
-date: 2014-09-23
+date: 2014-10-01
 ---
 
 A few days ago I talked with [Hastebrot](http://hastebrot.github.io/) about
