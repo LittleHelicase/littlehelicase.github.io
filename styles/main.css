@@ -50,11 +50,18 @@ h1,
 h2 {
   color: #69a7d3;
 }
+small {
+  margin-left: 20px;
+  font-weight: 400;
+  font-size: 60%;
+  color: gray;
+}
 h2 {
   font-size: 160%;
 }
 a {
   color: #fb2379;
+  font-weight: 400;
   text-decoration: none;
 }
 a:hover {
