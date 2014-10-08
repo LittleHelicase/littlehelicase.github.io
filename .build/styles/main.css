@@ -13,9 +13,10 @@ body {
   right: 0;
   margin-top: 0px;
   height: 70px;
-  background-color: #b92245;
+  color: #b92245;
   z-index: 2;
   box-shadow: 0px 0px 6px #333;
+  background: black;
 }
 .title {
   margin-left: 10%;

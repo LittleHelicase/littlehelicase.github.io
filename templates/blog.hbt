@@ -6,7 +6,7 @@
     <ul>
         {{#each collections.posts}}
             <li>
-                <h3><a href="{{link this.path}}">{{this.title}}</a></h3>
+                <h3><a href="{{link this.path}}">{{this.title}}</a><small>{{formatDate date}}</small></h3>
                 <article>{{{ this.excerpt }}}</article>
             </li>
         {{/each}}
