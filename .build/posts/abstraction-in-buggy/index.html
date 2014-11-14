@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Abstraction in Buggy | LittleHelicase Blog</title>
+    <link rel="stylesheet" href="../../styles/main.css" media="screen" title="no title" charset="utf-8">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <div class="cheat">
+    <div class="title"><a href="../../pages/blog-posts/index.html">LittleHelicase's Blog</a></div>
+    <div class="about"><a href="../../pages/about/index.html">About...</a></div>
+  </div>
+
+<div class="content">
+  <h2>Abstraction in Buggy
+  <small>14 November - 2014</small>
+  </h2>
+
+  <article>
+      <div class="images">
+<img style="float:right;margin-top:-50px" width="120" src="../../images/buggy/logo.png">
+</div>
+
+<p>Abstraction is a key concept in managing complexity. But creating good abstractions
+is hard. Often abstractions try to hide complexity but fail to improve usability.
+It is very important to not introduce new complexity by abstractions.</p>
+<p>Ben Moseley and Peter Marks identified a special kind of complexity that they call
+<em>incidental complexity</em> in their 2006 paper <a href="#MP2006">[MP2006]</a>. This complexity
+is mainly introduced by methods that try to structure the code and it increases
+with steadily with growing projects.</p>
+<p>In Buggy we tried to create a way of creating abstractions that are powerful.
+All abstractions should reduce complexity and thus make it easier to create,
+maintain and reuse code.
+We want to enable users to simply think in a level of abstraction if they
+create what they want to create removing the necessity to know (much) about other 
+abstraction layers or program parts. This requires more than just bundling data
+and creating methods that do some work for you. It should be possible for users
+to think in a way they are used to.</p>
+<p>Buggy achieves this by allowing <em>different</em> kinds of <em>input languages</em>, 
+even <em>graphical input</em> can be used to describe a program, processes or exemplary
+input data. It is even possible to combine different languages for different parts
+of a problem. Users can describe an input image graphically, they can write an
+algorithm in a text fashion and describe the dataflow using a graph. If you like
+to write pure text, you are welcome and others can view what you did in the way 
+they want to.</p>
+<p>Another important part of the Buggy abstraction method is the <em>loose binding</em> to
+concrete implementations. We use a system that allows the users to <em>use
+different implementations</em> of an abstraction without adapting other parts of
+the program. It is possible to <em>automatically compare</em> those implementations or
+test them against a specification.</p>
+<p>For us it is important to improve on our ways of reducing complexity. It is
+a vital task to empower the users. They should be able to work in an environment
+they feel accustomed to. The state of the art is to develop languages that
+are very powerful, but the users have to adapt their imagination to the tools the
+language gives them. But instead it should be the computer that adapts to the
+user to improve their workflow.</p>
+<h3 id="references-">References:</h3>
+<ul>
+<li><a name="MP2006"></a><strong>[MP2006]</strong> <em>Moseley, Ben, and Peter Marks.</em> <strong>&quot;Out of the tar pit.&quot;</strong> SOFTWARE PRACTICE ADVANCEMENT (SPA). 2006.</li>
+</ul>
+
+  </article>
+</div>
+
+
+</body>
+</html>

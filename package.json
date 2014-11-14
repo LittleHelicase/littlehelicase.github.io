@@ -13,7 +13,9 @@
   },
   "devDependencies": {
     "metalsmith-templates": "~0.5.2",
-    "handlebars": "~2.0.0"
+    "handlebars": "~2.0.0",
+    "metalsmith-less": "~1.0.2",
+    "metalsmith-watch": "~0.1.1"
   },
   "repository": {
     "type": "git",
