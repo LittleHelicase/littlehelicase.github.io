@@ -6,7 +6,6 @@ wget \
      --recursive \
      --no-clobber \
      --page-requisites \
-     --restrict-file-names=windows \
      --convert-links \
 	http://localhost:2368
 
