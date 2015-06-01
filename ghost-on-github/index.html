@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Ghost on Github</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css%3Fv=053c1aa387.css" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="canonical" href="index.html" />
+    
+    <meta property="og:site_name" content="LittleHelicase's Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Ghost on Github" />
+    <meta property="og:description" content="You probably noticed that I&#x27;m using Ghost on GitHub, even though Ghost does not run on GitHub. If you don&#x27;t know Ghost you should check it out now! Setting up a local Ghost I strongly recommend using Docker if you..." />
+    <meta property="og:url" content="http://localhost:2368/ghost-on-github/" />
+    <meta property="article:published_time" content="2015-06-01T18:47:32.073Z" />
+    <meta property="article:modified_time" content="2015-06-01T18:47:32.072Z" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Ghost on Github" />
+    <meta name="twitter:description" content="You probably noticed that I&#x27;m using Ghost on GitHub, even though Ghost does not run on GitHub. If you don&#x27;t know Ghost you should check it out now! Setting up a local Ghost I strongly recommend using Docker if you..." />
+    <meta name="twitter:url" content="http://localhost:2368/ghost-on-github/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "LittleHelicase's Blog",
+    "author": {
+        "@type": "Person",
+        "name": "Maximilian Klein",
+        "image": "//www.gravatar.com/avatar/775bffa7a15842d552df130b31d71788?s=250&d=mm&r=x",
+        "url": "http://localhost:2368/author/maximilian",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "Ghost on Github",
+    "url": "http://localhost:2368/ghost-on-github/",
+    "datePublished": "2015-06-01T18:47:32.073Z",
+    "dateModified": "2015-06-01T18:47:32.072Z",
+    "description": "You probably noticed that I&#x27;m using Ghost on GitHub, even though Ghost does not run on GitHub. If you don&#x27;t know Ghost you should check it out now! Setting up a local Ghost I strongly recommend using Docker if you..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.6" />
+    <link rel="alternate" type="application/rss+xml" title="LittleHelicase&#x27;s Blog" href="../rss/index.html" />
+</head>
+<body class="post-template nav-closed">
+
+    
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">Ghost on Github</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2015-06-01">01 June 2015</time> 
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>You probably noticed that I'm using Ghost on GitHub, even though Ghost does not run on GitHub. If you don't know Ghost you should <a href="https://ghost.org">check it out now</a>!</p>
+
+<h2 id="settingupalocalghost">Setting up a local Ghost</h2>
+
+<p>I strongly recommend using <a href="https://www.docker.com/">Docker</a> if you can! With docker installed you simply run</p>
+
+<pre><code>docker run -d --name github-blog -v &lt;local-path&gt;:/var/lib/ghost -p 2368:2368 ghost  
+</code></pre>
+
+<p>This starts a new Docker container serving on 2368 named github-blog of ghost. All your data will be stored at <code>&lt;local-path&gt;</code>. With this Docker container you should use the standard 2368 port as some of Ghosts links will point nowhere otherwise (it strangly uses the server port and not the one the users uses).</p>
+
+<p>After this setup you can simply go to <code>localhost:2368/ghost</code> and start editing your blog.</p>
+
+<h2 id="mirroringwithwget">Mirroring with wget</h2>
+
+<p>At last you want to copy your files to GitHub. I use wget for this, which is essentially <code>wget localhost:2368</code>. But sadly it is not quite that simple, you want it to follow links and change some of them according to the file-type to avoid MIME conflicts etc. You can find my mirror script <a href="https://github.com/LittleHelicase/littlehelicase.github.io/blob/master/mirror_local_blog.sh">here</a>. <strong>But</strong>: Be careful running this script. It removes everything in the current folder before starting wget. It will <strong>remove</strong> your files without asking and without putting it into the trash!</p>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/maximilian/index.html" style="background-image: url(http://www.gravatar.com/avatar/775bffa7a15842d552df130b31d71788?s=250&amp;d=mm&amp;r=x)"><span class="hidden">Maximilian Klein's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/maximilian/index.html">Maximilian Klein</a></h4>
+
+                    <p>Read <a href="../author/maximilian/index.html">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=Ghost%20on%20Github&amp;url=http://localhost:2368/ghost-on-github/"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/ghost-on-github/"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://localhost:2368/ghost-on-github/"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story prev no-cover" href="../stream-drawing-with-pivi/index.html">
+        <section class="post">
+            <h2>Stream drawing with Pivi</h2>
+            <p>Motivation While working in the university I supervised many student works. Most of them involved some form of programming&hellip;</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="../index.html">LittleHelicase&#x27;s Blog</a> &copy; 2015</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script src="../public/jquery.js%3Fv=053c1aa387"></script>
+
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js%3Fv=053c1aa387"></script>
+    <script type="text/javascript" src="../assets/js/index.js%3Fv=053c1aa387"></script>
+
+</body>
+</html>
