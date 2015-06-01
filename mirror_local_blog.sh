@@ -9,5 +9,5 @@ wget \
      --convert-links \
 	http://localhost:2368
 
-mv localhost+2368/* .
-rm -rf localhost+2368
+mv localhost:2368/* .
+rm -rf localhost:2368
