@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[LittleHelicase's Blog]]></title><description><![CDATA[LittleHelicase's Blog]]></description><link>http://localhost:2368/</link><generator>Ghost 0.6</generator><lastBuildDate>Mon, 01 Jun 2015 17:31:43 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Stream drawing with Pivi]]></title><description><![CDATA[<h2 id="motivation">Motivation</h2>
+
+<p>While working in the university I supervised many student works. Most of them involved some form of programming and visualizing the results. I noticed that nearly all of the students put a lot of effort into creating an environment in which they can visualize their results. Some of them</p>]]></description><link>http://localhost:2368/stream-drawing-with-pivi/</link><guid isPermaLink="false">692c6f9e-3ef7-4fee-af69-6afa3f145683</guid><dc:creator><![CDATA[Maximilian Klein]]></dc:creator><pubDate>Mon, 01 Jun 2015 17:26:25 GMT</pubDate><content:encoded><![CDATA[<h2 id="motivation">Motivation</h2>
+
+<p>While working in the university I supervised many student works. Most of them involved some form of programming and visualizing the results. I noticed that nearly all of the students put a lot of effort into creating an environment in which they can visualize their results. Some of them use some fancy tools others start with the bare minimum with varying results from crappy unusable tools to surprisingly beautiful solutions.</p>
+
+<p>And in every work I had at least some of the following issues:</p>
+
+<ul>
+<li>missing export mechanism</li>
+<li>unusable controls</li>
+<li>cumbersome dependencies</li>
+<li>not portable</li>
+<li>overly complex design hiding the important work</li>
+<li>etc.</li>
+</ul>
+
+<p>But the worst issue is, that students forget the actual task an put much more time into the visualization rather than into the actual problem solving. As I see it, students start creating the visualization environment and get excited with extending it etc. that they neglect the actual task.</p>
+
+<h2 id="thepiviapproach">The Pivi Approach</h2>
+
+<p>A colleague of me and I create a small and simple language that should solve most of the problems. It is a stream based drawing language that allows for an easy <em>dependency free</em> <sup id="fnref:1"><a href="http://localhost:2368/stream-drawing-with-pivi/#fn:1" rel="footnote">1</a></sup> development.</p>
+
+<p>Drawing in Pivi is fairly simple. You create a stream of commands and pipe it into Pivi which does all the drawing, conversion to animations etc. Pivi itself will need some dependencies, but it is possible to implement different Pivi clients making it easier to be portable.</p>
+
+<p>A Pivi stream could look like this:</p>
+
+<pre><code>line (10 10) (200 200) :stroke red  
+line (10 200) (200 10) : stroke blue  
+circle (40 40) 10 :fill yellow  
+</code></pre>
+
+<p>You can pass this stream into Pivi and get an image out of it. This works in every language, e.g. in Python it could look like this:</p>
+
+<pre><code class="language-python">print("line (10 10) (200 200) :stroke red")  
+print("line (10 200) (200 10) : stroke blue")  
+print("circle (40 40) 10 :fill yellow")  
+</code></pre>
+
+<p>And then you call <code>python prog-above.py | pivi</code> and get an image as a SVG. For animations you simply add a line <code>newframe</code> and start the next frame. The basic language is small and thus it is simple to write a different Pivi client on your system.</p>
+
+<p>Check out the Pivi Clojure client at <a href="https://github.com/rbuchmann/pivicl">Github</a></p>
+
+<h2 id="furtherdevelopment">Further Development</h2>
+
+<p>Pivi itself is rather small and has only a handful of features, but due to its stream based nature it is easy to write middlewares that add extra features like keyframe support or simple chart tools. A middleware takes a stream of commands in an extended format and transforms it into Pivi syntax (or a simpler middleware format). A possible middleware could transform CSV datasets into graphs drawn with Pivi like this:</p>
+
+<pre><code>cat graph.csv | csv2pivi --data "volume" --over "time" | pivi  
+</code></pre>
+
+<p>Where <code>--data</code> could select the column <code>volume</code> and <code>--over</code> defines the abscissa.</p>
+
+<div class="footnotes"><ol><li class="footnote" id="fn:1"><p>You will need a Pivi translation unit with it's dependencies for drawing.  <a href="http://localhost:2368/stream-drawing-with-pivi/#fnref:1" title="return to article">↩</a></p></li></ol></div>]]></content:encoded></item></channel></rss>

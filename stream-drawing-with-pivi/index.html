@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Stream drawing with Pivi</title>
+    <meta name="description" content="" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css@v=053c1aa387" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+
+    <link rel="canonical" href="index.html" />
+    
+    <meta property="og:site_name" content="LittleHelicase's Blog" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Stream drawing with Pivi" />
+    <meta property="og:description" content="Motivation While working in the university I supervised many student works. Most of them involved some form of programming and visualizing the results. I noticed that nearly all of the students put a lot of effort into creating an environment..." />
+    <meta property="og:url" content="http://localhost:2368/stream-drawing-with-pivi/" />
+    <meta property="article:published_time" content="2015-06-01T17:26:25.737Z" />
+    <meta property="article:modified_time" content="2015-06-01T17:27:35.618Z" />
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Stream drawing with Pivi" />
+    <meta name="twitter:description" content="Motivation While working in the university I supervised many student works. Most of them involved some form of programming and visualizing the results. I noticed that nearly all of the students put a lot of effort into creating an environment..." />
+    <meta name="twitter:url" content="http://localhost:2368/stream-drawing-with-pivi/" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "LittleHelicase's Blog",
+    "author": {
+        "@type": "Person",
+        "name": "Maximilian Klein",
+        "image": "//www.gravatar.com/avatar/775bffa7a15842d552df130b31d71788?s=250&d=mm&r=x",
+        "url": "http://localhost:2368/author/maximilian",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "Stream drawing with Pivi",
+    "url": "http://localhost:2368/stream-drawing-with-pivi/",
+    "datePublished": "2015-06-01T17:26:25.737Z",
+    "dateModified": "2015-06-01T17:27:35.618Z",
+    "description": "Motivation While working in the university I supervised many student works. Most of them involved some form of programming and visualizing the results. I noticed that nearly all of the students put a lot of effort into creating an environment..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.6" />
+    <link rel="alternate" type="application/rss+xml" title="LittleHelicase&#x27;s Blog" href="../rss/index.html" />
+</head>
+<body class="post-template nav-closed">
+
+    
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">Stream drawing with Pivi</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2015-06-01">01 June 2015</time> 
+            </section>
+        </header>
+
+        <section class="post-content">
+            <h2 id="motivation">Motivation</h2>
+
+<p>While working in the university I supervised many student works. Most of them involved some form of programming and visualizing the results. I noticed that nearly all of the students put a lot of effort into creating an environment in which they can visualize their results. Some of them use some fancy tools others start with the bare minimum with varying results from crappy unusable tools to surprisingly beautiful solutions.</p>
+
+<p>And in every work I had at least some of the following issues:</p>
+
+<ul>
+<li>missing export mechanism</li>
+<li>unusable controls</li>
+<li>cumbersome dependencies</li>
+<li>not portable</li>
+<li>overly complex design hiding the important work</li>
+<li>etc.</li>
+</ul>
+
+<p>But the worst issue is, that students forget the actual task an put much more time into the visualization rather than into the actual problem solving. As I see it, students start creating the visualization environment and get excited with extending it etc. that they neglect the actual task.</p>
+
+<h2 id="thepiviapproach">The Pivi Approach</h2>
+
+<p>A colleague of me and I create a small and simple language that should solve most of the problems. It is a stream based drawing language that allows for an easy <em>dependency free</em> <sup id="fnref:1"><a href="index.html#fn:1" rel="footnote">1</a></sup> development.</p>
+
+<p>Drawing in Pivi is fairly simple. You create a stream of commands and pipe it into Pivi which does all the drawing, conversion to animations etc. Pivi itself will need some dependencies, but it is possible to implement different Pivi clients making it easier to be portable.</p>
+
+<p>A Pivi stream could look like this:</p>
+
+<pre><code>line (10 10) (200 200) :stroke red  
+line (10 200) (200 10) : stroke blue  
+circle (40 40) 10 :fill yellow  
+</code></pre>
+
+<p>You can pass this stream into Pivi and get an image out of it. This works in every language, e.g. in Python it could look like this:</p>
+
+<pre><code class="language-python">print("line (10 10) (200 200) :stroke red")  
+print("line (10 200) (200 10) : stroke blue")  
+print("circle (40 40) 10 :fill yellow")  
+</code></pre>
+
+<p>And then you call <code>python prog-above.py | pivi</code> and get an image as a SVG. For animations you simply add a line <code>newframe</code> and start the next frame. The basic language is small and thus it is simple to write a different Pivi client on your system.</p>
+
+<p>Check out the Pivi Clojure client at <a href="https://github.com/rbuchmann/pivicl">Github</a></p>
+
+<h2 id="furtherdevelopment">Further Development</h2>
+
+<p>Pivi itself is rather small and has only a handful of features, but due to its stream based nature it is easy to write middlewares that add extra features like keyframe support or simple chart tools. A middleware takes a stream of commands in an extended format and transforms it into Pivi syntax (or a simpler middleware format). A possible middleware could transform CSV datasets into graphs drawn with Pivi like this:</p>
+
+<pre><code>cat graph.csv | csv2pivi --data "volume" --over "time" | pivi  
+</code></pre>
+
+<p>Where <code>--data</code> could select the column <code>volume</code> and <code>--over</code> defines the abscissa.</p>
+
+<div class="footnotes"><ol><li class="footnote" id="fn:1"><p>You will need a Pivi translation unit with it's dependencies for drawing.  <a href="index.html#fnref:1" title="return to article">↩</a></p></li></ol></div>
+        </section>
+
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/maximilian/index.html" style="background-image: url(http://www.gravatar.com/avatar/775bffa7a15842d552df130b31d71788?s=250&amp;d=mm&amp;r=x)"><span class="hidden">Maximilian Klein's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/maximilian/index.html">Maximilian Klein</a></h4>
+
+                    <p>Read <a href="../author/maximilian/index.html">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/share?text=Stream%20drawing%20with%20Pivi&amp;url=http://localhost:2368/stream-drawing-with-pivi/"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/stream-drawing-with-pivi/"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://localhost:2368/stream-drawing-with-pivi/"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="../index.html">LittleHelicase&#x27;s Blog</a> &copy; 2015</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script src="../public/jquery.js@v=053c1aa387"></script>
+
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js@v=053c1aa387"></script>
+    <script type="text/javascript" src="../assets/js/index.js@v=053c1aa387"></script>
+
+</body>
+</html>
