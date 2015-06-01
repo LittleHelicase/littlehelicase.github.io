@@ -7,6 +7,7 @@ wget \
      --no-clobber \
      --page-requisites \
      --convert-links \
+     --adjust-extension \
 	http://localhost:2368
 
 mv localhost:2368/* .
